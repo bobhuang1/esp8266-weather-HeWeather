@@ -92,41 +92,42 @@ void HeWeatherForecast::key(String key) {
 }
 
 void HeWeatherForecast::value(String value) {
-	if (currentKey == "cond_code_d") {
+	int intMaxForecasts = 5;
+	if (currentForecast < intMaxForecasts && currentKey == "cond_code_d") {
 		data[currentForecast].cond_code_d = value.toInt();
 		data[currentForecast].iconMeteoCon = getMeteoconIcon(value);
 	}
-	if (currentKey == "cond_txt_d") {
+	if (currentForecast < intMaxForecasts && currentKey == "cond_txt_d") {
 		data[currentForecast].cond_txt_d = value;
 	}
-	if (currentKey == "cond_txt_n") {
+	if (currentForecast < intMaxForecasts && currentKey == "cond_txt_n") {
 		data[currentForecast].cond_txt_n = value;
 	}
-	if (currentKey == "date") {
+	if (currentForecast < intMaxForecasts && currentKey == "date") {
 		data[currentForecast].date = value;
 	}
-	if (currentKey == "hum") {
+	if (currentForecast < intMaxForecasts && currentKey == "hum") {
 		data[currentForecast].hum = value.toInt();
 	}
-	if (currentKey == "pcpn") {
+	if (currentForecast < intMaxForecasts && currentKey == "pcpn") {
 		data[currentForecast].pcpn = value.toFloat();
 	}
-	if (currentKey == "pop") {
+	if (currentForecast < intMaxForecasts && currentKey == "pop") {
 		data[currentForecast].pop = value.toInt();
 	}
-	if (currentKey == "tmp_max") {
+	if (currentForecast < intMaxForecasts && currentKey == "tmp_max") {
 		data[currentForecast].tmp_max = value.toInt();
 	}
-	if (currentKey == "tmp_min") {
+	if (currentForecast < intMaxForecasts && currentKey == "tmp_min") {
 		data[currentForecast].tmp_min = value.toInt();
 	}
-	if (currentKey == "wind_dir") {
+	if (currentForecast < intMaxForecasts && currentKey == "wind_dir") {
 		data[currentForecast].wind_dir = value;
 	}
-	if (currentKey == "wind_sc") {
+	if (currentForecast < intMaxForecasts && currentKey == "wind_sc") {
 		data[currentForecast].wind_sc = value;
 	}
-	if (currentKey == "wind_spd") {
+	if (currentForecast < intMaxForecasts && currentKey == "wind_spd") {
 		data[currentForecast].wind_spd = value.toInt();
 		currentForecast++;
 	}
