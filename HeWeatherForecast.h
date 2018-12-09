@@ -10,8 +10,8 @@ typedef struct HeWeatherForecastData {
 	uint16_t hum;  // humidity
 	float pcpn; // precipitation in mm
 	uint16_t pop; // probablity of precipitation
-	uint16_t tmp_max;  // max temperature
-	uint16_t tmp_min;  // min temperature
+	int16_t tmp_max;  // max temperature
+	int16_t tmp_min;  // min temperature
 	String wind_dir; // wind direction
 	String wind_sc; // wind degree
 	uint16_t wind_spd; // wind speed in km/h

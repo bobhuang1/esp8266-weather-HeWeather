@@ -6,7 +6,7 @@ typedef struct HeWeatherCurrentData {
 	uint16_t cond_code; // condition code
 	String cond_txt; // Text description
 	uint16_t hum;  // humidity
-	uint16_t tmp;  // temperature
+	int16_t tmp;  // temperature
 	String wind_dir; // wind direction
 	String wind_sc; // wind degree
 	uint16_t wind_spd; // wind speed in km/h
