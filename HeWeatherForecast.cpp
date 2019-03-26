@@ -12,6 +12,7 @@ uint8_t HeWeatherForecast::updateForecast(HeWeatherForecastData *data, String ap
 }
 
 uint8_t HeWeatherForecast::doUpdate(HeWeatherForecastData *data, String url) {
+	if (WiFi.status() != WL_CONNECTED) return 0;
 	JsonStreamingParser parser;
 	parser.setListener(this);
 	WiFiClientSecure client;

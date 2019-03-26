@@ -12,6 +12,7 @@ void HeWeatherCurrent::updateCurrent(HeWeatherCurrentData *data, String appId, S
 }
 
 void HeWeatherCurrent::doUpdate(HeWeatherCurrentData *data, String url) {
+	if (WiFi.status() != WL_CONNECTED) return;
 	JsonStreamingParser parser;
 	parser.setListener(this);
 	WiFiClientSecure client;
