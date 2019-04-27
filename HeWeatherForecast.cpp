@@ -22,6 +22,7 @@ uint8_t HeWeatherForecast::doUpdate(HeWeatherForecastData *data, String url) {
 	this->currentForecast = 0;
 
 	const char host[] = "free-api.heweather.com";
+	Serial.println(host);
 
 	const int httpsPort = 443;
 	if (!client.connect(host, httpsPort)) {
@@ -64,7 +65,9 @@ uint8_t HeWeatherForecast::doUpdate(HeWeatherForecastData *data, String url) {
 			if ((millis() - lost_do) > lostTest) {
 				Serial.println("lost in client with a timeout");
 				client.stop();
-				ESP.restart();
+				this->data = nullptr;
+				return 0;
+//				ESP.restart();
 			}
 			c = client.read();
 			if (c == '{' || c == '[') {

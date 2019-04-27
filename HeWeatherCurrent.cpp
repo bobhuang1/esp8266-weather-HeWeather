@@ -12,6 +12,7 @@ void HeWeatherCurrent::updateCurrent(HeWeatherCurrentData *data, String appId, S
 }
 
 void HeWeatherCurrent::doUpdate(HeWeatherCurrentData *data, String url) {
+	Serial.println("doUpdate");
 	if (WiFi.status() != WL_CONNECTED) return;
 	JsonStreamingParser parser;
 	parser.setListener(this);
@@ -21,6 +22,7 @@ void HeWeatherCurrent::doUpdate(HeWeatherCurrentData *data, String url) {
 	this->data = data;
 
 	const char host[] = "free-api.heweather.com";
+	Serial.println(host);
 
 	const int httpsPort = 443;
 	if (!client.connect(host, httpsPort)) {
@@ -49,6 +51,7 @@ void HeWeatherCurrent::doUpdate(HeWeatherCurrentData *data, String url) {
 		if (retryCounter > 10) {
 			this->data = nullptr;
 			return;
+//			ESP.restart();
 		}
 	}
 
@@ -63,7 +66,9 @@ void HeWeatherCurrent::doUpdate(HeWeatherCurrentData *data, String url) {
 			if ((millis() - lost_do) > lostTest) {
 				Serial.println("lost in client with a timeout");
 				client.stop();
-				ESP.restart();
+				this->data = nullptr;
+				return;
+//				ESP.restart();
 			}
 			c = client.read();
 			if (c == '{' || c == '[') {
