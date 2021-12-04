@@ -1,4 +1,4 @@
-#include <ESPWiFi.h>
+#include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 #include "HeWeatherForecast.h"
 
@@ -12,10 +12,13 @@ uint8_t HeWeatherForecast::updateForecast(HeWeatherForecastData *data, String ap
 }
 
 uint8_t HeWeatherForecast::doUpdate(HeWeatherForecastData *data, String url) {
+	Serial.println("doUpdate");
+	Serial.println(url);
 	if (WiFi.status() != WL_CONNECTED) return 0;
 	JsonStreamingParser parser;
 	parser.setListener(this);
 	WiFiClientSecure client;
+	client.setFingerprint("07d3c71441672357ef98fbfe9a67f22940377103");
 	unsigned long lostTest = 30000UL;
 	unsigned long lost_do = millis();
 	this->data = data;
